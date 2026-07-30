@@ -1,0 +1,16 @@
+{
+  "meeting_weights": {
+    "Board Meeting": 100,
+    "External Customer": 80,
+    "Regulatory": 70,
+    "Leadership": 60,
+    "Interview": 40,
+    "Internal Project": 20
+  },
+  "travel_recovery_hours": 12,
+  "city_timezones": {
+    "New York": "America/New_York",
+    "London": "Europe/London",
+    "Singapore": "Asia/Singapore"
+  }
+}
