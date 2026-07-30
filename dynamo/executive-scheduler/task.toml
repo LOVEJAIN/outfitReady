@@ -1,0 +1,32 @@
+artifacts = ["/app/schedule.json"]
+
+[task]
+name = "dynamo/executive-scheduler"
+description = "Reconcile noisy executive scheduling data and produce an optimal cross-timezone meeting schedule."
+
+[metadata]
+category = "optimization"
+subcategory = "scheduling"
+task_objective = ["state_reconciliation", "constraint_satisfaction", "combinatorial_optimization"]
+artifact_type = ["json_schedule"]
+expert_time_estimate_hours = 1.5
+model_tested = "GPT-5.4"
+agent_tested = "Terminus-2"
+difficulty_explanation = "The benchmark combines noisy state reconstruction with timezone, travel, RSVP, dependency, and optimization rules. Correctness depends on rebuilding the canonical meetings before searching for the optimal feasible subset."
+solution_explanation = "Merge duplicate meeting records by meeting ID, apply timestamp-based reconciliation and RSVP rules, resolve executive location from the authoritative travel itineraries, then search the feasible meeting subsets and emit the best schedule under the required tie breakers."
+verification_explanation = "The verifier reconstructs canonical state from the raw inputs, validates schema and hard constraints, computes the optimal schedule independently, and accepts any artifact that matches the optimal objective and tie-break outcomes."
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = false
+mcp_servers = []

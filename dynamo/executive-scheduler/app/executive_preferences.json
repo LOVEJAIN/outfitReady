@@ -1,0 +1,25 @@
+{
+  "executives": [
+    {
+      "executive": "alex.chen",
+      "display_name": "Alex Chen",
+      "home_city": "New York",
+      "workday_start_hour": 7,
+      "workday_end_hour": 22
+    },
+    {
+      "executive": "bianca.shaw",
+      "display_name": "Bianca Shaw",
+      "home_city": "London",
+      "workday_start_hour": 7,
+      "workday_end_hour": 22
+    },
+    {
+      "executive": "charles.tan",
+      "display_name": "Charles Tan",
+      "home_city": "Singapore",
+      "workday_start_hour": 7,
+      "workday_end_hour": 22
+    }
+  ]
+}

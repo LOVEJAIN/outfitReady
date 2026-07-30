@@ -1,0 +1,116 @@
+{
+  "records": [
+    {
+      "meeting_id": "BRD-001",
+      "record_kind": "invitation",
+      "updated_at": "2026-07-21T14:00:00Z",
+      "title": "Q3 Board Meeting",
+      "meeting_type": "Board Meeting",
+      "mandatory": true,
+      "mode": "in_person",
+      "host_city": "London",
+      "start_utc": "2026-08-03T18:30:00Z",
+      "end_utc": "2026-08-03T20:00:00Z",
+      "required_attendees": ["alex.chen", "bianca.shaw", "charles.tan"],
+      "dependencies": []
+    },
+    {
+      "meeting_id": "CUST-009",
+      "record_kind": "invitation",
+      "updated_at": "2026-07-21T09:35:00Z",
+      "title": "Helios Expansion Customer Review",
+      "meeting_type": "External Customer",
+      "mandatory": false,
+      "mode": "in_person",
+      "host_city": "London",
+      "start_utc": "2026-08-03T19:00:00Z",
+      "end_utc": "2026-08-03T20:00:00Z",
+      "required_attendees": ["alex.chen", "bianca.shaw"],
+      "dependencies": []
+    },
+    {
+      "meeting_id": "REG-220",
+      "record_kind": "invitation",
+      "updated_at": "2026-07-22T15:00:00Z",
+      "title": "EMEA Regulatory Readout",
+      "meeting_type": "Regulatory",
+      "mandatory": true,
+      "mode": "virtual",
+      "host_city": "London",
+      "start_utc": "2026-08-04T07:00:00Z",
+      "end_utc": "2026-08-04T08:00:00Z",
+      "required_attendees": ["bianca.shaw", "charles.tan"],
+      "dependencies": []
+    },
+    {
+      "meeting_id": "REG-220",
+      "record_kind": "rsvp",
+      "updated_at": "2026-07-22T15:10:00Z",
+      "attendee": "bianca.shaw",
+      "response": "Accepted"
+    },
+    {
+      "meeting_id": "REG-220",
+      "record_kind": "rsvp",
+      "updated_at": "2026-07-22T15:11:00Z",
+      "attendee": "charles.tan",
+      "response": "Accepted"
+    },
+    {
+      "meeting_id": "LEAD-010",
+      "record_kind": "invitation",
+      "updated_at": "2026-07-23T10:00:00Z",
+      "title": "Board Debrief Leadership Sync",
+      "meeting_type": "Leadership",
+      "mandatory": false,
+      "mode": "virtual",
+      "host_city": "London",
+      "start_utc": "2026-08-04T08:30:00Z",
+      "end_utc": "2026-08-04T09:30:00Z",
+      "required_attendees": ["alex.chen", "bianca.shaw", "charles.tan"],
+      "dependencies": ["BRD-001"]
+    },
+    {
+      "meeting_id": "CUST-011",
+      "record_kind": "invitation",
+      "updated_at": "2026-07-25T09:00:00Z",
+      "title": "Meridian Singapore Customer Briefing",
+      "meeting_type": "External Customer",
+      "mandatory": false,
+      "mode": "in_person",
+      "host_city": "Singapore",
+      "start_utc": "2026-08-04T13:00:00Z",
+      "end_utc": "2026-08-04T14:00:00Z",
+      "required_attendees": ["alex.chen", "charles.tan"],
+      "dependencies": []
+    },
+    {
+      "meeting_id": "REG-221",
+      "record_kind": "cancellation",
+      "updated_at": "2026-07-27T08:00:00Z",
+      "title": "Regulatory Steering Committee",
+      "meeting_type": "Regulatory",
+      "mandatory": true,
+      "mode": "virtual",
+      "host_city": "London",
+      "start_utc": "2026-08-04T14:30:00Z",
+      "end_utc": "2026-08-04T15:30:00Z",
+      "required_attendees": ["alex.chen", "bianca.shaw"],
+      "dependencies": []
+    },
+    {
+      "meeting_id": "OPS-777",
+      "record_kind": "cancellation",
+      "updated_at": "2026-07-26T12:00:00Z",
+      "title": "Cancelled Operating Review",
+      "meeting_type": "Internal Project",
+      "mandatory": false,
+      "mode": "virtual",
+      "host_city": "London",
+      "start_utc": "2026-08-04T12:00:00Z",
+      "end_utc": "2026-08-04T12:30:00Z",
+      "required_attendees": ["alex.chen", "bianca.shaw"],
+      "dependencies": []
+    }
+  ]
+}

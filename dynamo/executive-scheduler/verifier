@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+from benchmark_lib import (
+    ValidationError,
+    canonical_active_meetings,
+    compute_optimal_schedule,
+    evaluate_schedule,
+    load_dataset,
+    validate_schedule_schema,
+)
+
+
+def main() -> int:
+    data_dir = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parent / "app"))
+    schedule_path = Path(
+        os.environ.get("SCHEDULE_PATH", Path(__file__).resolve().parent / ".work" / "schedule.json")
+    )
+
+    if not schedule_path.exists():
+        print(f"Missing schedule artifact: {schedule_path}", file=sys.stderr)
+        return 1
+
+    dataset = load_dataset(data_dir)
+    active_meetings = canonical_active_meetings(dataset)
+    optimal = compute_optimal_schedule(dataset)
+
+    try:
+        artifact = json.loads(schedule_path.read_text(encoding="utf-8"))
+        validate_schedule_schema(artifact, active_meetings)
+        evaluation = evaluate_schedule(dataset, artifact)
+    except (json.JSONDecodeError, ValidationError) as exc:
+        print(f"Verification failed: {exc}", file=sys.stderr)
+        return 1
+
+    if evaluation["mandatory_selected_count"] != optimal["mandatory_selected_count"]:
+        print(
+            "Verification failed: schedule rejected a mandatory meeting that is globally feasible.",
+            file=sys.stderr,
+        )
+        return 1
+
+    if evaluation["score"] != optimal["score"]:
+        print(
+            f"Verification failed: score {evaluation['score']} does not match optimal {optimal['score']}.",
+            file=sys.stderr,
+        )
+        return 1
+
+    if evaluation["tie_break_tuple"] != optimal["tie_break_tuple"]:
+        print(
+            "Verification failed: schedule is not optimal under the required tie breakers.",
+            file=sys.stderr,
+        )
+        return 1
+
+    for meeting_id, feasible in evaluation["reinsertable_rejections"].items():
+        if feasible:
+            print(
+                f"Verification failed: rejected meeting {meeting_id} can be reinserted without violating constraints.",
+                file=sys.stderr,
+            )
+            return 1
+
+    print("Verification passed.")
+    print(json.dumps(
+        {
+            "score": evaluation["score"],
+            "mandatory_selected_count": evaluation["mandatory_selected_count"],
+            "selected_meeting_ids": evaluation["selected_meeting_ids"],
+        },
+        indent=2,
+    ))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
